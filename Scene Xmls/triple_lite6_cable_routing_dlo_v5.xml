@@ -1,0 +1,472 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mujoco model="triple_lite6_cable_routing_dlo_v5">
+  <compiler angle="radian" autolimits="true" meshdir="vendor/mujoco_menagerie/ufactory_lite6/assets" texturedir="vendor/mujoco_menagerie/ufactory_lite6/assets" />
+  <option timestep="0.0005" integrator="implicitfast" gravity="0 0 -9.81" cone="elliptic" iterations="80" ls_iterations="20" />
+  <size njmax="9000" nconmax="2500" />
+  <visual>
+    <global offwidth="2560" offheight="1920" />
+  </visual>
+  <default>
+    <default class="lite6">
+      <geom type="mesh" />
+      <joint axis="0 0 1" damping="1" armature="0.1" />
+      <position kp="2000" kv="200" />
+      <default class="size1">
+        <position forcerange="-50 50" />
+      </default>
+      <default class="size2">
+        <position forcerange="-32 32" />
+      </default>
+      <default class="size3">
+        <position forcerange="-20 20" />
+      </default>
+      <default class="visual">
+        <geom contype="0" conaffinity="0" group="2" material="white" />
+      </default>
+      <default class="collision">
+        <geom group="3" mass="0" density="0" />
+      </default>
+      <site size="0.001" rgba="0.5 0.5 0.5 0.3" group="4" />
+    </default>
+  </default>
+  <asset>
+    <material name="white" rgba="1 1 1 1" />
+    <material name="silver" rgba=".753 .753 .753 1" />
+    <material name="black" rgba=".1 .1 .1 1" />
+    <mesh file="visual/link_base.stl" />
+    <mesh file="visual/link1.stl" />
+    <mesh file="visual/link2.stl" />
+    <mesh file="visual/link3.stl" />
+    <mesh file="visual/link4.stl" />
+    <mesh file="visual/link5.stl" />
+    <mesh file="visual/link6.stl" />
+    <mesh file="visual/gripper_lite_body.stl" />
+    <mesh file="visual/gripper_lite_left_finger_wide.stl" />
+    <mesh file="visual/gripper_lite_right_finger_wide.stl" />
+    <mesh name="link_base_c" file="collision/link_base.stl" />
+    <mesh name="link1_c" file="collision/link1.stl" />
+    <mesh name="link2_c" file="collision/link2.stl" />
+    <mesh name="link3_c" file="collision/link3.stl" />
+    <mesh name="link4_c" file="collision/link4.stl" />
+    <mesh name="link5_c" file="collision/link5.stl" />
+    <mesh name="link6_c" file="collision/link6.stl" />
+    <mesh name="gripper_lite_body_c" file="collision/gripper_lite_body.stl" />
+    <mesh file="collision/gripper_lite_left_finger_wide_base.stl" />
+    <mesh file="collision/gripper_lite_right_finger_wide_base.stl" />
+    <mesh file="collision/gripper_lite_left_finger_wide_tip.stl" />
+    <mesh file="collision/gripper_lite_right_finger_wide_tip.stl" />
+    <material name="mat_worktop" rgba="0.72 0.70 0.66 1" />
+    <material name="mat_frame" rgba="0.20 0.22 0.24 1" />
+    <material name="mat_mount" rgba="0.08 0.09 0.10 1" />
+    <material name="mat_box" rgba="0.46 0.48 0.50 1" />
+    <material name="mat_cable_red" rgba="0.95 0.03 0.02 1" />
+    <material name="mat_cable_blue" rgba="0.02 0.18 0.95 1" />
+    <material name="mat_cable_marker_start" rgba="0.05 0.85 0.10 1" />
+    <material name="mat_cable_marker_end" rgba="0.05 0.80 0.85 1" />
+    <mesh name="d435i_0" file="../../realsense_d435i/assets/d435i_0.obj" />
+    <mesh name="d435i_1" file="../../realsense_d435i/assets/d435i_1.obj" />
+    <mesh name="d435i_2" file="../../realsense_d435i/assets/d435i_2.obj" />
+    <mesh name="d435i_3" file="../../realsense_d435i/assets/d435i_3.obj" />
+    <mesh name="d435i_4" file="../../realsense_d435i/assets/d435i_4.obj" />
+    <mesh name="d435i_5" file="../../realsense_d435i/assets/d435i_5.obj" />
+    <mesh name="d435i_6" file="../../realsense_d435i/assets/d435i_6.obj" />
+    <mesh name="d435i_7" file="../../realsense_d435i/assets/d435i_7.obj" />
+    <mesh name="d435i_8" file="../../realsense_d435i/assets/d435i_8.obj" />
+    <mesh name="grasp_tool" file="../../../../Tool_For_r2,r3_Closed_Gripper_Position.STL" scale="0.001 0.001 0.001" />
+    <material name="mat_grasp_tool" rgba="0.85 0.65 0.13 1" />
+    <material name="d435i_Black_Acrylic" rgba="0.070 0.070 0.070 1" />
+    <material name="d435i_Cameras_Gray" rgba="0.296 0.296 0.296 1" />
+    <material name="d435i_IR_Emitter_Lens" rgba="0.287 0.665 0.328 1" />
+    <material name="d435i_IR_Lens" rgba="0.036 0.036 0.036 1" />
+    <material name="d435i_IR_Rim" rgba="0.799 0.807 0.799 1" />
+    <material name="d435i_Metal_Casing" rgba="1 1 1 1" />
+    <material name="d435i_RGB_Pupil" rgba="0.087 0.003 0.009 1" />
+  </asset>
+  <worldbody>
+    <light name="key_light" pos="-0.4 -0.8 2.5" dir="0.3 0.6 -1" diffuse="0.9 0.9 0.85" />
+    <light name="fill_light" pos="0.8 0.6 2.0" dir="-0.2 -0.2 -1" diffuse="0.35 0.38 0.42" />
+    <camera name="overview" pos="1.55 -1.35 1.55" xyaxes="0.68 0.73 0 -0.36 0.34 0.87" />
+    <camera name="box_focus" pos="0.08 0 1.72" xyaxes="1 0 0 0 1 0" fovy="45" />
+    <camera name="fixture_iso" pos="0.74 -0.69 1.54" xyaxes="0.722 0.691 0 -0.416 0.435 0.799" fovy="45" />
+    <geom name="floor" type="plane" size="2.5 2.0 0.02" rgba="0.18 0.19 0.20 1" />
+    <geom name="workstation_60x30_top" type="box" pos="0 -0.125 0.72" size="0.762 0.506 0.035" material="mat_worktop" contype="1" conaffinity="1" />
+    <geom name="workstation_left_leg" type="box" pos="-0.68 -0.55 0.35" size="0.035 0.035 0.35" material="mat_frame" />
+    <geom name="workstation_right_leg" type="box" pos="0.68 -0.55 0.35" size="0.035 0.035 0.35" material="mat_frame" />
+    <geom name="workstation_back_left_leg" type="box" pos="-0.68 0.30 0.35" size="0.035 0.035 0.35" material="mat_frame" />
+    <geom name="workstation_back_right_leg" type="box" pos="0.68 0.30 0.35" size="0.035 0.035 0.35" material="mat_frame" />
+    <body name="grey_routing_box" pos="0.20 0 0.82">
+      <geom name="box_floor" type="box" pos="0 0 -0.038" size="0.2325 0.15 0.012" material="mat_box" />
+      <geom name="box_front_guide_a" type="box" pos="-0.1575 -0.105 0.005" size="0.075 0.010 0.045" material="mat_box" />
+      <geom name="box_front_guide_b" type="box" pos="0.0525 -0.105 0.005" size="0.0525 0.010 0.045" material="mat_box" />
+      <geom name="box_front_guide_c" type="box" pos="0.19875 -0.105 0.005" size="0.01125 0.010 0.045" material="mat_box" />
+      <geom name="box_back_guide_a" type="box" pos="-0.1575 0.105 0.005" size="0.075 0.010 0.045" material="mat_box" />
+      <geom name="box_back_guide_b" type="box" pos="0.0525 0.105 0.005" size="0.0525 0.010 0.045" material="mat_box" />
+      <geom name="box_back_guide_c" type="box" pos="0.19875 0.105 0.005" size="0.01125 0.010 0.045" material="mat_box" />
+    </body>
+    <body name="red_cable_00" pos="-0.1 0 0.845">
+      <freejoint name="red_cable_root" />
+      <geom name="red_cable_geom_00" type="capsule" fromto="-0.02 0 0 0.02 0 0" size="0.005" material="mat_cable_marker_start" density="1250" condim="4" friction="1.2 0.02 0.001" solref="0.008 1" solimp="0.95 0.99 0.001" />
+      <site name="red_cable_site_00" size="0.004" rgba="1 1 1 0.25" />
+      <body name="red_cable_01" pos="0.04 0 0">
+        <joint name="red_cable_ball_01" type="ball" pos="-0.02 0 0" damping="0.15" armature="0.0005" />
+        <geom name="red_cable_geom_01" type="capsule" fromto="-0.02 0 0 0.02 0 0" size="0.005" material="mat_cable_red" density="1250" condim="4" friction="1.2 0.02 0.001" solref="0.008 1" solimp="0.95 0.99 0.001" />
+        <site name="red_cable_site_01" size="0.004" rgba="1 1 1 0.25" />
+        <body name="red_cable_02" pos="0.04 0 0">
+          <joint name="red_cable_ball_02" type="ball" pos="-0.02 0 0" damping="0.15" armature="0.0005" />
+          <geom name="red_cable_geom_02" type="capsule" fromto="-0.02 0 0 0.02 0 0" size="0.005" material="mat_cable_red" density="1250" condim="4" friction="1.2 0.02 0.001" solref="0.008 1" solimp="0.95 0.99 0.001" />
+          <site name="red_cable_site_02" size="0.004" rgba="1 1 1 0.25" />
+          <body name="red_cable_03" pos="0.04 0 0">
+            <joint name="red_cable_ball_03" type="ball" pos="-0.02 0 0" damping="0.15" armature="0.0005" />
+            <geom name="red_cable_geom_03" type="capsule" fromto="-0.02 0 0 0.02 0 0" size="0.005" material="mat_cable_red" density="1250" condim="4" friction="1.2 0.02 0.001" solref="0.008 1" solimp="0.95 0.99 0.001" />
+            <site name="red_cable_site_03" size="0.004" rgba="1 1 1 0.25" />
+            <body name="red_cable_04" pos="0.04 0 0">
+              <joint name="red_cable_ball_04" type="ball" pos="-0.02 0 0" damping="0.15" armature="0.0005" />
+              <geom name="red_cable_geom_04" type="capsule" fromto="-0.02 0 0 0.02 0 0" size="0.005" material="mat_cable_red" density="1250" condim="4" friction="1.2 0.02 0.001" solref="0.008 1" solimp="0.95 0.99 0.001" />
+              <site name="red_cable_site_04" size="0.004" rgba="1 1 1 0.25" />
+              <body name="red_cable_05" pos="0.04 0 0">
+                <joint name="red_cable_ball_05" type="ball" pos="-0.02 0 0" damping="0.15" armature="0.0005" />
+                <geom name="red_cable_geom_05" type="capsule" fromto="-0.02 0 0 0.02 0 0" size="0.005" material="mat_cable_red" density="1250" condim="4" friction="1.2 0.02 0.001" solref="0.008 1" solimp="0.95 0.99 0.001" />
+                <site name="red_cable_site_05" size="0.004" rgba="1 1 1 0.25" />
+                <body name="red_cable_06" pos="0.04 0 0">
+                  <joint name="red_cable_ball_06" type="ball" pos="-0.02 0 0" damping="0.15" armature="0.0005" />
+                  <geom name="red_cable_geom_06" type="capsule" fromto="-0.02 0 0 0.02 0 0" size="0.005" material="mat_cable_red" density="1250" condim="4" friction="1.2 0.02 0.001" solref="0.008 1" solimp="0.95 0.99 0.001" />
+                  <site name="red_cable_site_06" size="0.004" rgba="1 1 1 0.25" />
+                  <body name="red_cable_07" pos="0.04 0 0">
+                    <joint name="red_cable_ball_07" type="ball" pos="-0.02 0 0" damping="0.15" armature="0.0005" />
+                    <geom name="red_cable_geom_07" type="capsule" fromto="-0.02 0 0 0.02 0 0" size="0.005" material="mat_cable_red" density="1250" condim="4" friction="1.2 0.02 0.001" solref="0.008 1" solimp="0.95 0.99 0.001" />
+                    <site name="red_cable_site_07" size="0.004" rgba="1 1 1 0.25" />
+                    <body name="red_cable_08" pos="0.04 0 0">
+                      <joint name="red_cable_ball_08" type="ball" pos="-0.02 0 0" damping="0.15" armature="0.0005" />
+                      <geom name="red_cable_geom_08" type="capsule" fromto="-0.02 0 0 0.02 0 0" size="0.005" material="mat_cable_red" density="1250" condim="4" friction="1.2 0.02 0.001" solref="0.008 1" solimp="0.95 0.99 0.001" />
+                      <site name="red_cable_site_08" size="0.004" rgba="1 1 1 0.25" />
+                      <body name="red_cable_09" pos="0.04 0 0">
+                        <joint name="red_cable_ball_09" type="ball" pos="-0.02 0 0" damping="0.15" armature="0.0005" />
+                        <geom name="red_cable_geom_09" type="capsule" fromto="-0.02 0 0 0.02 0 0" size="0.005" material="mat_cable_red" density="1250" condim="4" friction="1.2 0.02 0.001" solref="0.008 1" solimp="0.95 0.99 0.001" />
+                        <site name="red_cable_site_09" size="0.004" rgba="1 1 1 0.25" />
+                        <body name="red_cable_10" pos="0.04 0 0">
+                          <joint name="red_cable_ball_10" type="ball" pos="-0.02 0 0" damping="0.15" armature="0.0005" />
+                          <geom name="red_cable_geom_10" type="capsule" fromto="-0.02 0 0 0.02 0 0" size="0.005" material="mat_cable_red" density="1250" condim="4" friction="1.2 0.02 0.001" solref="0.008 1" solimp="0.95 0.99 0.001" />
+                          <site name="red_cable_site_10" size="0.004" rgba="1 1 1 0.25" />
+                          <body name="red_cable_11" pos="0.04 0 0">
+                            <joint name="red_cable_ball_11" type="ball" pos="-0.02 0 0" damping="0.15" armature="0.0005" />
+                            <geom name="red_cable_geom_11" type="capsule" fromto="-0.02 0 0 0.02 0 0" size="0.005" material="mat_cable_red" density="1250" condim="4" friction="1.2 0.02 0.001" solref="0.008 1" solimp="0.95 0.99 0.001" />
+                            <site name="red_cable_site_11" size="0.004" rgba="1 1 1 0.25" />
+                            <body name="red_cable_12" pos="0.04 0 0">
+                              <joint name="red_cable_ball_12" type="ball" pos="-0.02 0 0" damping="0.15" armature="0.0005" />
+                              <geom name="red_cable_geom_12" type="capsule" fromto="-0.02 0 0 0.02 0 0" size="0.005" material="mat_cable_red" density="1250" condim="4" friction="1.2 0.02 0.001" solref="0.008 1" solimp="0.95 0.99 0.001" />
+                              <site name="red_cable_site_12" size="0.004" rgba="1 1 1 0.25" />
+                              <body name="red_cable_13" pos="0.04 0 0">
+                                <joint name="red_cable_ball_13" type="ball" pos="-0.02 0 0" damping="0.15" armature="0.0005" />
+                                <geom name="red_cable_geom_13" type="capsule" fromto="-0.02 0 0 0.02 0 0" size="0.005" material="mat_cable_red" density="1250" condim="4" friction="1.2 0.02 0.001" solref="0.008 1" solimp="0.95 0.99 0.001" />
+                                <site name="red_cable_site_13" size="0.004" rgba="1 1 1 0.25" />
+                                <body name="red_cable_14" pos="0.04 0 0">
+                                  <joint name="red_cable_ball_14" type="ball" pos="-0.02 0 0" damping="0.15" armature="0.0005" />
+                                  <geom name="red_cable_geom_14" type="capsule" fromto="-0.02 0 0 0.02 0 0" size="0.005" material="mat_cable_marker_end" density="1250" condim="4" friction="1.2 0.02 0.001" solref="0.008 1" solimp="0.95 0.99 0.001" />
+                                  <site name="red_cable_site_14" size="0.004" rgba="1 1 1 0.25" />
+                                </body>
+                              </body>
+                            </body>
+                          </body>
+                        </body>
+                      </body>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+    <camera name="cable_init_top" pos="0.18 0 1.81" xyaxes="1 0 0 0 1 0" fovy="45" />
+    <camera name="cable_lateral" pos="0.0 0.43 1.0" xyaxes="-0.907 -0.422 0.000 0.150 -0.322 0.935" fovy="45" />
+    <camera name="cable_side" pos="0.16 -0.68 0.87" xyaxes="1.0 -0.0 0.0 0.0 0.0733 0.9973" fovy="45" />
+    <body name="r1_rail" pos="0 -0.52 0.755">
+      <joint name="r1_rail_x" type="slide" axis="1 0 0" range="-0.8 0.4" />
+      <body name="r1_mount" pos="0.2 0 0" euler="0 0 0.2">
+        <body name="r1_link_base" childclass="lite6">
+          <inertial pos="-0.00829545 3.26357e-05 0.0631195" mass="1.65394" diaginertia="0 0 0" />
+          <geom class="visual" mesh="link_base" group="4" />
+          <geom name="r1_link_base_c" class="collision" mesh="link_base_c" />
+          <body name="r1_link1" pos="0 0 0.2435">
+            <inertial pos="-0.00036 0.04195 -0.0025" quat="0.608059 0.792349 -0.0438707 0.0228718" mass="1.411" diaginertia="0.00145276 0.00135275 0.000853355" />
+            <joint name="r1_joint1" range="-6.28319 6.28319" />
+            <geom class="visual" mesh="link1" group="4" />
+            <geom name="r1_link1_c" class="collision" mesh="link1_c" />
+            <body name="r1_link2" quat="-1 1 1 1">
+              <inertial pos="0.179 0 0.0584" quat="0.417561 0.571619 0.569585 0.417693" mass="1.34" diaginertia="0.00560971 0.0052152 0.00122018" />
+              <joint name="r1_joint2" range="-2.61799 2.61799" />
+              <geom class="visual" mesh="link2" group="4" />
+              <geom name="r1_link2_c" class="collision" mesh="link2_c" />
+              <body name="r1_link3" pos="0.2002 0 0" quat="-2.59734e-06 -0.707105 -0.707108 -2.59735e-06">
+                <inertial pos="0.072 -0.0357 -0.001" quat="0.128259 0.662963 -0.167256 0.71837" mass="0.953" diaginertia="0.0018521 0.00175546 0.000703807" />
+                <joint name="r1_joint3" range="-0.061087 5.23599" />
+                <geom class="visual" mesh="link3" group="4" />
+                <geom name="r1_link3_c" class="collision" mesh="link3_c" />
+                <body name="r1_link4" pos="0.087 -0.22761 0" quat="0.707105 0.707108 0 0">
+                  <inertial pos="-0.002 -0.0285 -0.0813" quat="0.975248 0.22109 0.00203498 -0.00262178" mass="1.284" diaginertia="0.00370503 0.00349091 0.00109586" />
+                  <joint name="r1_joint4" range="-6.28319 6.28319" />
+                  <geom class="visual" mesh="link4" group="4" />
+                  <geom name="r1_link4_c" class="collision" mesh="link4_c" />
+                  <body name="r1_link5" quat="1 1 0 0">
+                    <inertial pos="0 0.01 0.0019" quat="0.71423 0.696388 -0.0531933 0.0456997" mass="0.804" diaginertia="0.000567553 0.000529266 0.000507681" />
+                    <joint name="r1_joint5" range="-2.1642 2.1642" />
+                    <geom class="visual" mesh="link5" group="4" />
+                    <geom name="r1_link5_c" class="collision" mesh="link5_c" />
+                    <body name="r1_link6" pos="0 0.0625 0" quat="1 -1 0 0">
+                      <inertial pos="0 -0.00194 -0.0102" quat="-0.0376023 0.704057 0.0446838 0.707738" mass="0.13" diaginertia="0.000148148 8.57757e-05 7.71412e-05" />
+                      <joint name="r1_joint6" range="-6.28319 6.28319" />
+                      <geom class="visual" mesh="link6" material="silver" group="4" />
+                      <geom name="r1_link6_c" class="collision" mesh="link6_c" />
+                      <site name="r1_attachment_site" />
+                      <body name="r1_gripper_body" pos="0 0 0" quat="1 0 0 0">
+                        <inertial pos="0.0 0.0 0.026" quat="1 0 0 0" mass="0.26" diaginertia="0.00016117 0.000118 0.00014455" />
+                        <geom class="visual" mesh="gripper_lite_body" material="white" group="4" />
+                        <geom name="r1_gripper_lite_body_c" class="collision" mesh="gripper_lite_body_c" />
+                        <body name="r1_gripper_left_finger" pos="0 0 0.054" quat="1 0 0 0">
+                          <inertial pos="0.0 -0.01 0.01" quat="1 0 0 0" mass="0.024" diaginertia="1.961e-6 2.274e-6 1.238e-6" />
+                          <joint name="r1_gripper_left_finger" pos="0 0 0" axis="0 1 0" type="slide" limited="true" range="-0.0081 -1e-5" frictionloss="0.4" />
+                          <geom mesh="gripper_lite_left_finger_wide" class="visual" material="black" group="4" />
+                          <geom name="r1_gripper_left_finger_base" class="collision" mesh="gripper_lite_left_finger_wide_base" material="black" condim="1" solimp="2 1 0.01" solref="0.01 1" friction="6 0.5 0.1" />
+                          <geom name="r1_gripper_left_finger" class="collision" mesh="gripper_lite_left_finger_wide_tip" material="black" condim="4" solimp="2 1 0.01" solref="0.01 1" friction="6 0.5 0.1" />
+                        </body>
+                        <body name="r1_gripper_right_finger" pos="0 0 0.054" quat="1 0 0 0">
+                          <inertial pos="0.0 0.01 0.01" quat="1 0 0 0" mass="0.024" diaginertia="1.961e-6 2.274e-6 1.238e-6" />
+                          <joint name="r1_gripper_right_finger" pos="0 0 0" axis="0 1 0" type="slide" limited="true" range="1e-5 0.0081" frictionloss="0.4" />
+                          <geom mesh="gripper_lite_right_finger_wide" class="visual" material="black" group="4" />
+                          <geom name="r1_gripper_right_finger_base" class="collision" mesh="gripper_lite_right_finger_wide_base" material="black" condim="1" solimp="2 1 0.01" solref="0.01 1" friction="5 0.5 0.1" />
+                          <geom name="r1_gripper_right_finger" class="collision" mesh="gripper_lite_right_finger_wide_tip" material="black" condim="4" solimp="2 1 0.01" solref="0.01 1" friction="5 0.5 0.1" />
+                        </body>
+                        <site name="r1_end_effector" pos="0 0 0.0811" />
+                      </body>
+                      <body name="r1_d435i" pos="0 0.045 -0.01" quat="0 1 0 0">
+                        <geom type="mesh" mesh="d435i_0" material="d435i_IR_Lens" contype="0" conaffinity="0" group="4" mass="0" />
+                        <geom type="mesh" mesh="d435i_1" material="d435i_IR_Emitter_Lens" contype="0" conaffinity="0" group="4" mass="0" />
+                        <geom type="mesh" mesh="d435i_2" material="d435i_IR_Rim" contype="0" conaffinity="0" group="4" mass="0" />
+                        <geom type="mesh" mesh="d435i_3" material="d435i_IR_Lens" contype="0" conaffinity="0" group="4" mass="0" />
+                        <geom type="mesh" mesh="d435i_4" material="d435i_Cameras_Gray" contype="0" conaffinity="0" group="4" mass="0" />
+                        <geom type="mesh" mesh="d435i_5" material="d435i_Black_Acrylic" contype="0" conaffinity="0" group="4" mass="0" />
+                        <geom type="mesh" mesh="d435i_6" material="d435i_Black_Acrylic" contype="0" conaffinity="0" group="4" mass="0" />
+                        <geom type="mesh" mesh="d435i_7" material="d435i_RGB_Pupil" contype="0" conaffinity="0" group="4" mass="0" />
+                        <geom type="mesh" mesh="d435i_8" material="d435i_Metal_Casing" contype="0" conaffinity="0" group="4" mass="0.072" />
+                        <body name="r1_d435i_rgb_body" pos="0.0325 0 -0.0036">
+                          <camera name="r1_d435i_rgb" fovy="42.5" />
+                        </body>
+                        <body name="r1_d435i_depth_body" pos="-0.0075 0 -0.0013">
+                          <camera name="r1_d435i_depth" fovy="62" />
+                        </body>
+                      </body>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+        <geom name="r1_mount_plate" type="cylinder" pos="0 0 0.012" size="0.105 0.012" material="mat_mount" contype="1" conaffinity="1" />
+      </body>
+    </body>
+    <body name="r2_mount" pos="-0.05 0.24 0.755" euler="0 0 -1.15">
+      <body name="r2_link_base" childclass="lite6">
+        <inertial pos="-0.00829545 3.26357e-05 0.0631195" mass="1.65394" diaginertia="0 0 0" />
+        <geom class="visual" mesh="link_base" />
+        <geom name="r2_link_base_c" class="collision" mesh="link_base_c" />
+        <body name="r2_link1" pos="0 0 0.2435">
+          <inertial pos="-0.00036 0.04195 -0.0025" quat="0.608059 0.792349 -0.0438707 0.0228718" mass="1.411" diaginertia="0.00145276 0.00135275 0.000853355" />
+          <joint name="r2_joint1" range="-6.28319 6.28319" />
+          <geom class="visual" mesh="link1" />
+          <geom name="r2_link1_c" class="collision" mesh="link1_c" />
+          <body name="r2_link2" quat="-1 1 1 1">
+            <inertial pos="0.179 0 0.0584" quat="0.417561 0.571619 0.569585 0.417693" mass="1.34" diaginertia="0.00560971 0.0052152 0.00122018" />
+            <joint name="r2_joint2" range="-2.61799 2.61799" />
+            <geom class="visual" mesh="link2" />
+            <geom name="r2_link2_c" class="collision" mesh="link2_c" />
+            <body name="r2_link3" pos="0.2002 0 0" quat="-2.59734e-06 -0.707105 -0.707108 -2.59735e-06">
+              <inertial pos="0.072 -0.0357 -0.001" quat="0.128259 0.662963 -0.167256 0.71837" mass="0.953" diaginertia="0.0018521 0.00175546 0.000703807" />
+              <joint name="r2_joint3" range="-0.061087 5.23599" />
+              <geom class="visual" mesh="link3" />
+              <geom name="r2_link3_c" class="collision" mesh="link3_c" />
+              <body name="r2_link4" pos="0.087 -0.22761 0" quat="0.707105 0.707108 0 0">
+                <inertial pos="-0.002 -0.0285 -0.0813" quat="0.975248 0.22109 0.00203498 -0.00262178" mass="1.284" diaginertia="0.00370503 0.00349091 0.00109586" />
+                <joint name="r2_joint4" range="-6.28319 6.28319" />
+                <geom class="visual" mesh="link4" />
+                <geom name="r2_link4_c" class="collision" mesh="link4_c" />
+                <body name="r2_link5" quat="1 1 0 0">
+                  <inertial pos="0 0.01 0.0019" quat="0.71423 0.696388 -0.0531933 0.0456997" mass="0.804" diaginertia="0.000567553 0.000529266 0.000507681" />
+                  <joint name="r2_joint5" range="-2.1642 2.1642" />
+                  <geom class="visual" mesh="link5" />
+                  <geom name="r2_link5_c" class="collision" mesh="link5_c" />
+                  <body name="r2_link6" pos="0 0.0625 0" quat="1 -1 0 0">
+                    <inertial pos="0 -0.00194 -0.0102" quat="-0.0376023 0.704057 0.0446838 0.707738" mass="0.13" diaginertia="0.000148148 8.57757e-05 7.71412e-05" />
+                    <joint name="r2_joint6" range="-6.28319 6.28319" />
+                    <geom class="visual" mesh="link6" material="silver" />
+                    <geom name="r2_link6_c" class="collision" mesh="link6_c" />
+                    <site name="r2_attachment_site" />
+                    <body name="r2_gripper_body" pos="0 0 0" quat="1 0 0 0">
+                      <inertial pos="0.0 0.0 0.026" quat="1 0 0 0" mass="0.26" diaginertia="0.00016117 0.000118 0.00014455" />
+                      <geom class="visual" mesh="gripper_lite_body" material="white" />
+                      <geom name="r2_gripper_lite_body_c" class="collision" mesh="gripper_lite_body_c" />
+                      <body name="r2_gripper_left_finger" pos="0 0 0.054" quat="1 0 0 0">
+                        <inertial pos="0.0 -0.01 0.01" quat="1 0 0 0" mass="0.024" diaginertia="1.961e-6 2.274e-6 1.238e-6" />
+                        <joint name="r2_gripper_left_finger" pos="0 0 0" axis="0 1 0" type="slide" limited="true" range="-0.0081 -1e-5" frictionloss="0.4" />
+                        <geom mesh="gripper_lite_left_finger_wide" class="visual" material="black" />
+                        <geom name="r2_gripper_left_finger_base" class="collision" mesh="gripper_lite_left_finger_wide_base" material="black" condim="1" solimp="2 1 0.01" solref="0.01 1" friction="6 0.5 0.1" />
+                        <geom name="r2_gripper_left_finger" class="collision" mesh="gripper_lite_left_finger_wide_tip" material="black" condim="4" solimp="2 1 0.01" solref="0.01 1" friction="6 0.5 0.1" />
+                      </body>
+                      <body name="r2_gripper_right_finger" pos="0 0 0.054" quat="1 0 0 0">
+                        <inertial pos="0.0 0.01 0.01" quat="1 0 0 0" mass="0.024" diaginertia="1.961e-6 2.274e-6 1.238e-6" />
+                        <joint name="r2_gripper_right_finger" pos="0 0 0" axis="0 1 0" type="slide" limited="true" range="1e-5 0.0081" frictionloss="0.4" />
+                        <geom mesh="gripper_lite_right_finger_wide" class="visual" material="black" />
+                        <geom name="r2_gripper_right_finger_base" class="collision" mesh="gripper_lite_right_finger_wide_base" material="black" condim="1" solimp="2 1 0.01" solref="0.01 1" friction="5 0.5 0.1" />
+                        <geom name="r2_gripper_right_finger" class="collision" mesh="gripper_lite_right_finger_wide_tip" material="black" condim="4" solimp="2 1 0.01" solref="0.01 1" friction="5 0.5 0.1" />
+                      </body>
+                      <site name="r2_end_effector" pos="0 0 0.0811" />
+                      <body name="r2_grasp_tool" pos="0.005 -0.01105 0.0911" quat="0.5 -0.5 -0.5 0.5">
+                        <geom name="r2_grasp_tool_geom" type="mesh" mesh="grasp_tool" material="mat_grasp_tool" contype="1" conaffinity="1" density="1200" />
+                      </body>
+                    </body>
+                    <body name="r2_d435i" pos="0 0.045 -0.01" quat="1 0 0 0">
+                      <geom type="mesh" mesh="d435i_0" material="d435i_IR_Lens" contype="0" conaffinity="0" group="2" mass="0" />
+                      <geom type="mesh" mesh="d435i_1" material="d435i_IR_Emitter_Lens" contype="0" conaffinity="0" group="2" mass="0" />
+                      <geom type="mesh" mesh="d435i_2" material="d435i_IR_Rim" contype="0" conaffinity="0" group="2" mass="0" />
+                      <geom type="mesh" mesh="d435i_3" material="d435i_IR_Lens" contype="0" conaffinity="0" group="2" mass="0" />
+                      <geom type="mesh" mesh="d435i_4" material="d435i_Cameras_Gray" contype="0" conaffinity="0" group="2" mass="0" />
+                      <geom type="mesh" mesh="d435i_5" material="d435i_Black_Acrylic" contype="0" conaffinity="0" group="2" mass="0" />
+                      <geom type="mesh" mesh="d435i_6" material="d435i_Black_Acrylic" contype="0" conaffinity="0" group="2" mass="0" />
+                      <geom type="mesh" mesh="d435i_7" material="d435i_RGB_Pupil" contype="0" conaffinity="0" group="2" mass="0" />
+                      <geom type="mesh" mesh="d435i_8" material="d435i_Metal_Casing" contype="0" conaffinity="0" group="2" mass="0.072" />
+                      <body name="r2_d435i_rgb_body" pos="0.0325 0 -0.0036">
+                        <camera name="r2_d435i_rgb" fovy="42.5" />
+                      </body>
+                      <body name="r2_d435i_depth_body" pos="-0.0075 0 -0.0013">
+                        <camera name="r2_d435i_depth" fovy="62" />
+                      </body>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+      <geom name="r2_mount_plate" type="cylinder" pos="0 0 0.012" size="0.105 0.012" material="mat_mount" contype="1" conaffinity="1" />
+    </body>
+    <body name="r3_mount" pos="0.52 0.22 0.755" euler="0 0 2.8">
+      <body name="r3_link_base" childclass="lite6">
+        <inertial pos="-0.00829545 3.26357e-05 0.0631195" mass="1.65394" diaginertia="0 0 0" />
+        <geom class="visual" mesh="link_base" />
+        <geom name="r3_link_base_c" class="collision" mesh="link_base_c" />
+        <body name="r3_link1" pos="0 0 0.2435">
+          <inertial pos="-0.00036 0.04195 -0.0025" quat="0.608059 0.792349 -0.0438707 0.0228718" mass="1.411" diaginertia="0.00145276 0.00135275 0.000853355" />
+          <joint name="r3_joint1" range="-6.28319 6.28319" />
+          <geom class="visual" mesh="link1" />
+          <geom name="r3_link1_c" class="collision" mesh="link1_c" />
+          <body name="r3_link2" quat="-1 1 1 1">
+            <inertial pos="0.179 0 0.0584" quat="0.417561 0.571619 0.569585 0.417693" mass="1.34" diaginertia="0.00560971 0.0052152 0.00122018" />
+            <joint name="r3_joint2" range="-2.61799 2.61799" />
+            <geom class="visual" mesh="link2" />
+            <geom name="r3_link2_c" class="collision" mesh="link2_c" />
+            <body name="r3_link3" pos="0.2002 0 0" quat="-2.59734e-06 -0.707105 -0.707108 -2.59735e-06">
+              <inertial pos="0.072 -0.0357 -0.001" quat="0.128259 0.662963 -0.167256 0.71837" mass="0.953" diaginertia="0.0018521 0.00175546 0.000703807" />
+              <joint name="r3_joint3" range="-0.061087 5.23599" />
+              <geom class="visual" mesh="link3" />
+              <geom name="r3_link3_c" class="collision" mesh="link3_c" />
+              <body name="r3_link4" pos="0.087 -0.22761 0" quat="0.707105 0.707108 0 0">
+                <inertial pos="-0.002 -0.0285 -0.0813" quat="0.975248 0.22109 0.00203498 -0.00262178" mass="1.284" diaginertia="0.00370503 0.00349091 0.00109586" />
+                <joint name="r3_joint4" range="-6.28319 6.28319" />
+                <geom class="visual" mesh="link4" />
+                <geom name="r3_link4_c" class="collision" mesh="link4_c" />
+                <body name="r3_link5" quat="1 1 0 0">
+                  <inertial pos="0 0.01 0.0019" quat="0.71423 0.696388 -0.0531933 0.0456997" mass="0.804" diaginertia="0.000567553 0.000529266 0.000507681" />
+                  <joint name="r3_joint5" range="-2.1642 2.1642" />
+                  <geom class="visual" mesh="link5" />
+                  <geom name="r3_link5_c" class="collision" mesh="link5_c" />
+                  <body name="r3_link6" pos="0 0.0625 0" quat="1 -1 0 0">
+                    <inertial pos="0 -0.00194 -0.0102" quat="-0.0376023 0.704057 0.0446838 0.707738" mass="0.13" diaginertia="0.000148148 8.57757e-05 7.71412e-05" />
+                    <joint name="r3_joint6" range="-6.28319 6.28319" />
+                    <geom class="visual" mesh="link6" material="silver" />
+                    <geom name="r3_link6_c" class="collision" mesh="link6_c" />
+                    <site name="r3_attachment_site" />
+                    <body name="r3_gripper_body" pos="0 0 0" quat="1 0 0 0">
+                      <inertial pos="0.0 0.0 0.026" quat="1 0 0 0" mass="0.26" diaginertia="0.00016117 0.000118 0.00014455" />
+                      <geom class="visual" mesh="gripper_lite_body" material="white" />
+                      <geom name="r3_gripper_lite_body_c" class="collision" mesh="gripper_lite_body_c" />
+                      <body name="r3_gripper_left_finger" pos="0 0 0.054" quat="1 0 0 0">
+                        <inertial pos="0.0 -0.01 0.01" quat="1 0 0 0" mass="0.024" diaginertia="1.961e-6 2.274e-6 1.238e-6" />
+                        <joint name="r3_gripper_left_finger" pos="0 0 0" axis="0 1 0" type="slide" limited="true" range="-0.0081 -1e-5" frictionloss="0.4" />
+                        <geom mesh="gripper_lite_left_finger_wide" class="visual" material="black" />
+                        <geom name="r3_gripper_left_finger_base" class="collision" mesh="gripper_lite_left_finger_wide_base" material="black" condim="1" solimp="2 1 0.01" solref="0.01 1" friction="6 0.5 0.1" />
+                        <geom name="r3_gripper_left_finger" class="collision" mesh="gripper_lite_left_finger_wide_tip" material="black" condim="4" solimp="2 1 0.01" solref="0.01 1" friction="6 0.5 0.1" />
+                      </body>
+                      <body name="r3_gripper_right_finger" pos="0 0 0.054" quat="1 0 0 0">
+                        <inertial pos="0.0 0.01 0.01" quat="1 0 0 0" mass="0.024" diaginertia="1.961e-6 2.274e-6 1.238e-6" />
+                        <joint name="r3_gripper_right_finger" pos="0 0 0" axis="0 1 0" type="slide" limited="true" range="1e-5 0.0081" frictionloss="0.4" />
+                        <geom mesh="gripper_lite_right_finger_wide" class="visual" material="black" />
+                        <geom name="r3_gripper_right_finger_base" class="collision" mesh="gripper_lite_right_finger_wide_base" material="black" condim="1" solimp="2 1 0.01" solref="0.01 1" friction="5 0.5 0.1" />
+                        <geom name="r3_gripper_right_finger" class="collision" mesh="gripper_lite_right_finger_wide_tip" material="black" condim="4" solimp="2 1 0.01" solref="0.01 1" friction="5 0.5 0.1" />
+                      </body>
+                      <site name="r3_end_effector" pos="0 0 0.0811" />
+                      <body name="r3_grasp_tool" pos="0.005 -0.01105 0.0911" quat="0.5 -0.5 -0.5 0.5">
+                        <geom name="r3_grasp_tool_geom" type="mesh" mesh="grasp_tool" material="mat_grasp_tool" contype="1" conaffinity="1" density="1200" />
+                      </body>
+                    </body>
+                    <body name="r3_d435i" pos="0 0.045 -0.01" quat="1 0 0 0">
+                      <geom type="mesh" mesh="d435i_0" material="d435i_IR_Lens" contype="0" conaffinity="0" group="2" mass="0" />
+                      <geom type="mesh" mesh="d435i_1" material="d435i_IR_Emitter_Lens" contype="0" conaffinity="0" group="2" mass="0" />
+                      <geom type="mesh" mesh="d435i_2" material="d435i_IR_Rim" contype="0" conaffinity="0" group="2" mass="0" />
+                      <geom type="mesh" mesh="d435i_3" material="d435i_IR_Lens" contype="0" conaffinity="0" group="2" mass="0" />
+                      <geom type="mesh" mesh="d435i_4" material="d435i_Cameras_Gray" contype="0" conaffinity="0" group="2" mass="0" />
+                      <geom type="mesh" mesh="d435i_5" material="d435i_Black_Acrylic" contype="0" conaffinity="0" group="2" mass="0" />
+                      <geom type="mesh" mesh="d435i_6" material="d435i_Black_Acrylic" contype="0" conaffinity="0" group="2" mass="0" />
+                      <geom type="mesh" mesh="d435i_7" material="d435i_RGB_Pupil" contype="0" conaffinity="0" group="2" mass="0" />
+                      <geom type="mesh" mesh="d435i_8" material="d435i_Metal_Casing" contype="0" conaffinity="0" group="2" mass="0.072" />
+                      <body name="r3_d435i_rgb_body" pos="0.0325 0 -0.0036">
+                        <camera name="r3_d435i_rgb" fovy="42.5" />
+                      </body>
+                      <body name="r3_d435i_depth_body" pos="-0.0075 0 -0.0013">
+                        <camera name="r3_d435i_depth" fovy="62" />
+                      </body>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+      <geom name="r3_mount_plate" type="cylinder" pos="0 0 0.012" size="0.105 0.012" material="mat_mount" contype="1" conaffinity="1" />
+    </body>
+    <geom name="r1_rail_track" type="box" pos="0 -0.52 0.749" size="0.6 0.03 0.006" material="mat_frame" contype="0" conaffinity="0" />
+  </worldbody>
+  <equality>
+    <weld name="r2_cable_grasp_weld" body1="red_cable_00" body2="r2_gripper_body" relpose="0 0 0 1 0 0 0" active="false" solref="0.002 1" solimp="0.95 0.99 0.001" />
+    <weld name="r3_cable_grasp_weld" body1="red_cable_14" body2="r3_gripper_body" relpose="0 0 0 1 0 0 0" active="false" solref="0.002 1" solimp="0.95 0.99 0.001" />
+    <joint joint1="r1_gripper_left_finger" joint2="r1_gripper_right_finger" polycoef="0 -1 0 0 0" />
+    <joint joint1="r2_gripper_left_finger" joint2="r2_gripper_right_finger" polycoef="0 -1 0 0 0" />
+    <joint joint1="r3_gripper_left_finger" joint2="r3_gripper_right_finger" polycoef="0 -1 0 0 0" />
+  </equality>
+  <actuator>
+    <position joint="r1_joint1" class="size1" ctrlrange="-6.28319 6.28319" />
+    <position joint="r1_joint2" class="size1" ctrlrange="-2.61799 2.61799" />
+    <position joint="r1_joint3" class="size2" ctrlrange="-0.061087 5.23599" />
+    <position joint="r1_joint4" class="size2" ctrlrange="-6.28319 6.28319" />
+    <position joint="r1_joint5" class="size2" ctrlrange="-2.1642 2.1642" />
+    <position joint="r1_joint6" class="size3" ctrlrange="-6.28319 6.28319" />
+    <motor name="r1_gripper" joint="r1_gripper_left_finger" forcerange="-10 10" ctrlrange="-10 10" />
+    <position joint="r2_joint1" class="size1" ctrlrange="-6.28319 6.28319" />
+    <position joint="r2_joint2" class="size1" ctrlrange="-2.61799 2.61799" />
+    <position joint="r2_joint3" class="size2" ctrlrange="-0.061087 5.23599" />
+    <position joint="r2_joint4" class="size2" ctrlrange="-6.28319 6.28319" />
+    <position joint="r2_joint5" class="size2" ctrlrange="-2.1642 2.1642" />
+    <position joint="r2_joint6" class="size3" ctrlrange="-6.28319 6.28319" />
+    <motor name="r2_gripper" joint="r2_gripper_left_finger" forcerange="-10 10" ctrlrange="-10 10" />
+    <position joint="r3_joint1" class="size1" ctrlrange="-6.28319 6.28319" />
+    <position joint="r3_joint2" class="size1" ctrlrange="-2.61799 2.61799" />
+    <position joint="r3_joint3" class="size2" ctrlrange="-0.061087 5.23599" />
+    <position joint="r3_joint4" class="size2" ctrlrange="-6.28319 6.28319" />
+    <position joint="r3_joint5" class="size2" ctrlrange="-2.1642 2.1642" />
+    <position joint="r3_joint6" class="size3" ctrlrange="-6.28319 6.28319" />
+    <motor name="r3_gripper" joint="r3_gripper_left_finger" forcerange="-10 10" ctrlrange="-10 10" />
+    <position name="r1_rail_x" joint="r1_rail_x" ctrlrange="-0.8 0.4" kp="30000" kv="600" forcerange="-5000 5000" />
+  </actuator>
+</mujoco>

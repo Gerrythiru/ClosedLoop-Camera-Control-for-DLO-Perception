@@ -1,0 +1,85 @@
+Today's investigation changes the design substantially. The earlier framing assumed node 0's failure was gripper occlusion that a better angle fixes. We now know most of it isn't — so the algorithm's first job is classifying the failure, because only some classes are NBV's problem.
+
+Updated failure taxonomy (in pic)
+
+
+
+The reconciliation that E4 got wrong: ray-cast "visible" ≠ trackable. A node can be geometrically unoccluded yet have zero mask pixels (marker color, or grazing/foreshortened cable). The predictor must
+hold both signals and reason about their disagreement.
+
+What to log from both pipelines
+
+Per frame, on a common timeline, for every run (V4 and V5, paint-on and paint-off):
+
+Tracker-state (what actually happened):
+- per-node red-mask pixel count in a window around each projected node — the real visibility signal
+- per-node node_support P1 (already published by the C++ node)
+- CPD-LLE per frame: iterations-to-converge, did-not-converge flag (needs the diagnostic topic / rosout parse — the "E0" step)
+- tracking-step time; downsampled point-cloud size
+- per-node inter-frame displacement ‖Yₜ−Yₜ₋₁‖
+- polyline: per-segment length ratio, total-length ratio
+- per-node turning angle (discrete curvature) and its frame-to-frame rate
+- per-node tracked−GT error (the label; sim only)
+
+Kinematic / geometric (what a real robot knows without vision):
+- camera world pose per frame (from schedule/FK); intrinsics, FOV, depth range
+- r2, r3 joint states → gripper + link poses (occluder geometry)
+- r2, r3 planned trajectory (future occluder geometry) — from the waypoint script
+- per-node ray-cast label {VISIBLE, OCCLUDED, OUT_OF_FRAME} + occluder geom name (like
+- per-node analytic self-occlusion, now and H seconds ahead (camera→node ray vs arm capsules, using the planned trajectory)
+- per-node material tag: is this node on a marker segment? (blind-spot flag, from the
+- static scene mesh (box, table); cable GT node positions (sim; substitute tracker estimate in deployment)
+
+Run metadata (constant per run, for cross-run attribution):
+- cable length / node count / segment length / radius
+- CPD-LLE params (BETA, LAMBDA, LLE_WEIGHT, MAX_ITER, tau_vis, DLO_PIXEL_WIDTH); HSV bands
+- camera schedule (poses, hold windows, rail); publish rate
+- carry-motion descriptor (monotonic vs zigzag; waypoints; speeds)
+
+Failure predictor — inputs / outputs
+
+Inputs (per-frame feature vector + trailing-window deltas):
+- convergence health: did-not-converge rate over last N frames, iterations trend towar
+- min per-node P1 and min per-node mask support (value, which node, trend)
+- per-node ray-cast label + occluder class (arm / box / none) + analytic self-occlusio
+- the reconciliation feature per at-risk node: visible+marker → blind-spot · visible+cable+~0 px → foreshortening/grazing · occluded-by-arm → geometric · out-of-frame → framing
+- shape stress: max segment stretch, total-length ratio, per-node curvature & its rate
+- per-node inter-frame jump outliers; point-cloud size vs nominal
+
+Outputs:
+- per-frame risk ∈ [0,1]; which node(s); estimated frames-to-divergence
+- failure class ∈ {blind-spot, geometric-occlusion, foreshortening, joint-solve-degeneracy, slip}
+- recommended mitigation ∈ {none, invoke-NBV, repaint-markers/widen-HSV, enable-FK-pri driven by the class, not by risk alone
+
+The class output is the point. "Risk high + class = blind-spot" → recommend repaint, n + class = geometric-occlusion" → call NBV.
+
+NBV planner — inputs / outputs
+
+Inputs:
+- current (or lookahead-predicted) cable state Y (N×3 world)
+- r2, r3 arm + gripper poses now and over the horizon (planned trajectory)
+- static scene mesh; r1 reachable pose set (rail × IK × collision — including against moving r2/r3, per E4b)
+- camera intrinsics / FOV / depth range
+- per-node trackability weight: high for struggling nodes and mask-visible endpoints; zero for blind-spot-limited nodes (don't optimize a view for a node the mask can't see) unless paired with repaint
+- the predictor's failure class (so it knows what it's solving)
+
+Objective (revised for today's lessons):
+- pixel-footprint visibility, not single-ray — project each node's cable cross-section (radius), count would-be-cable pixels surviving occlusion + in-frame + within depth + above DLO_PIXEL_WIDTH.
+  Validate against a real render for the top candidates.
+- viewing ray ⟂ local cable tangent (anti-foreshortening) — grazing angles zeroed out mask support today even when "visible"
+- endpoint priority (only for mask-visible endpoints); projected node spacing ≥ thresh
+- lookahead stability: integrate the score over the horizon, pick the pose that stays good longest
+- move cost: transit-gap duration, joint travel, limit proximity, collision along the tch hysteresis
+- reachability as a hard constraint
+
+Outputs:
+- best reachable pose (pos, quat, solved qpos); per-node predicted visibility gain vs transit cost
+- an explicit "no reposition materially helps" verdict when the best candidate doesn't beat current — E4 should have returned this instead of a false-positive "99% visible"
+
+The cross-pipeline data you actually need
+
+You now have four conditions: {V4, V5} × {paint on, paint off}. Use them as:
+- V4 paint-off = negative control: blind spot present all run, no runaway → predictor mask support alone
+- V5 paint-off = positive: predictor must fire in the ~5 s runway between did-not-converge onset (t≈24–27) and unrecoverable error, and label class = joint-solve-degeneracy (blind-spot-triggered)      - paint-on vs off on each = feature attribution: how much of the risk each feature exp output flips correctly (blind-spot → resolved)
+- V4 vs V5 at the equivalent carry instant = isolates the trigger features: what's in V5's t≈24–27 that isn't in V4's — curvature-rate (zigzag), sustained single viewpoint, convergence-collapse onset
+Gap: today's runs are almost all blind-spot mode. You have ~0 clean geometric-occlusion failures — the case NBV actually exists for. Before the NBV objective can be validated, you need to deliberately generate a few: pick 2–3 camera poses that put an arm squarely between the camera and  segment during the carry, run them, confirm mask support drops there, and check thatNBV recovers a pose that restores it.
