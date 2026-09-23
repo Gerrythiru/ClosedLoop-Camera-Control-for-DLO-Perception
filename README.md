@@ -1,7 +1,7 @@
 # Closed-Loop Camera Control for DLO Perception
 
-A MuJoCo simulation for studying how an **actively moved camera** can keep a
-**deformable linear object (DLO)**, such as a cable, trackable while other robots
+A MuJoCo simulation for studying how an **actively moved camera** can track the shape and movement of a
+**deformable linear object (DLO)**, such as a cable, while other robots
 handle it.
 
 Three UFactory Lite 6 arms stand on a 60 in × 30 in workstation:
